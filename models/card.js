@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const cardSchema = new Schema({
+const answerSchema = new Schema({
     event: {
         type: Schema.Types.ObjectId,
-        ref:'Event'
+        ref: 'Event'
     },
     user: {
-        type:Schema.Types.ObjectId,
-        ref:'User'
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
-}, {timestamps:true}
+}, { timestamps: true }
 );
 
-module.exports = mongoose.model('Card',cardSchema);
+module.exports = mongoose.model('Card', answerSchema);
