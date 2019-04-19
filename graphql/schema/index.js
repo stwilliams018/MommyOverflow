@@ -1,8 +1,9 @@
-const {buildSchema } = require('graphql');
+const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
     type Card {
         _id: ID!
+        answerScore: Int!
         event: Event!
         user: User!
         createdAt: String!
@@ -11,14 +12,14 @@ module.exports = buildSchema(`
     type Event {
         _id:ID!
         title: String!
-        description: String!
-        price: Float!
         date: String!
         creator: User!        
     }
 
     type User {
         _id:ID!
+        firstName:String!
+        lastName:String!
         email:String!
         password: String
         createdEvents: [Event!]
