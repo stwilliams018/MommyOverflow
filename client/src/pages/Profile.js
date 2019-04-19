@@ -1,11 +1,14 @@
-import React from "react";
+import React, {Component } from 'react';
+import MainNavigation from './components/Navigation/MainNavigation';
+import MainNavigation from './components/Profile/profile';
 
-function Profile() {
-    return (
-      <div>
-          <h1 className="title">Welcome to your Profile Page!</h1>
-      </div>
-    );
-  }
-  
-  export default Profile;
+class Profile extends Component {
+    render() {
+        return (  
+            <MainNavigation />
+            <Profile />
+        );
+    }
+}
+
+export default ProfilePage;
