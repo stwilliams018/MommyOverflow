@@ -1,11 +1,13 @@
 import React from "react";
 
-function Home() {
-    return (
-      <div>
-        <h1 className="title">Welcome to Mommy Overflow</h1>
-      </div>
+class HomePage extends Component {
+  render() {
+    return(
+      <h1>Home Page</h1>
     );
   }
+}
+
   
-  export default Home;
+  export default HomePage;
+
