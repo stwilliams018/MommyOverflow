@@ -1,9 +1,10 @@
 import React from "react";
+import MainNavigation from './components/Navigation/MainNavigation';
 
 class HomePage extends Component {
   render() {
     return(
-      <h1>Home Page</h1>
+      <MainNavigation />
     );
   }
 }

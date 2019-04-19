@@ -44,4 +44,21 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script type="text/javascript">
+
+    $("#showQuestionModal").click(function() {
+        $(".modal").addClass("is-active");  
+      });
+      
+      $("#questionmodal-close").click(function() {
+         $(".modal").removeClass("is-active");
+         $("textarea").empty()
+      });
+      $("#submitQuestion").click(function() {
+          //Add DB Save function here
+         $(".modal").removeClass("is-active");
+         $(".questionText").empty()
+      });
+    
+    </script>
 </html>
