@@ -79,7 +79,8 @@ class AuthPage extends Component {
             });
     };
     render() {
-        return (<form onSubmit={this.submitHandler}>
+        return (
+        <form onSubmit={this.submitHandler}>
             <div className="control"> 
                 <label>Email address:</label>
                 <input type="email" className="input" id="email" ref={this.emailEl} />

@@ -11,14 +11,39 @@ function mainNavigation() {
           <div className="modal-background"></div>
           <div className="modal-content">
             <div className="field">
-              <label className="label ">Please enter your question</label>
-              <div className="control">
-                <textarea className="textarea" id ="questionText" placeholder="Textarea"></textarea>
+              <label class="label">Title</label>
+                <div class="control">
+                  <input class="input" type="Question Title" placeholder="Text input"/>
+                </div>
+            </div>
+            <div className="field">
+              <label className="label">Message</label>
+                <div className="control">
+                  <textarea className="textarea" placeholder="Textarea"></textarea>
+                </div>
+            </div>
+            <div className="field">
+              <label className="label">Category</label>
+                <div className="control">
+                  <div className="select">
+                    <select>
+                      <option>Select dropdown</option>
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                      <option>Option 4</option>
+                      <option>Option 5</option>
+                      <option>Option 6</option>
+                    </select>
+                  </div>
+                </div>
               </div>
                 <button className="button" id="submitQuestion">Submit</button>
                 <button className="button" id="questionmodal-close">Cancel</button>
             </div>
-        </div>
+          </div>
+        
+
         <nav className="navbar is-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
@@ -48,9 +73,9 @@ function mainNavigation() {
             <NavLink className="nav-link" to="/Profile">Profile</NavLink>
             </a>
           </div>
-        </nav>
-      </div>
+      </nav>
     </div>
+    
   );
 }
   export default mainNavigation ;

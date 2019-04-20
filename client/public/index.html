@@ -59,6 +59,20 @@
          $(".modal").removeClass("is-active");
          $(".questionText").empty()
       });
+
+      $("#showCommentModal").click(function() {
+        $(".modal").addClass("is-active");  
+      });
+      
+      $("#commentmodal-close").click(function() {
+         $(".modal").removeClass("is-active");
+         $("textarea").empty()
+      });
+      $("#submitComment").click(function() {
+          //Add DB Save function here
+         $(".modal").removeClass("is-active");
+         $(".questionText").empty()
+      });
     
     </script>
 </html>
