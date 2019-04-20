@@ -1,16 +1,30 @@
 import React from "./node_modules/react";
-
+import "./style.css";
 
 
 function Card() {
 
     return(
+        <div className="modal">
+          <div className="modal-background"></div>
+          <div className="modal-content">
+            <div className="field">
+              <label className="label ">Please enter your comment</label>
+              <div className="control">
+                <textarea className="textarea" id ="commentText" placeholder="Textarea"></textarea>
+              </div>
+                <button className="button" id="submitComment">Submit</button>
+                <button className="button" id="commentmodal-close">Cancel</button>
+            </div>
+          </div>
+        </div>
+
         <div className="card">
                 <div className="card-image">
                     <figure className="image is-4by3">
                         <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"/>
                     </figure>
-                </div>
+                
                 <div className="card-content">
                     <div className="media">
                         <div className="media-left">
@@ -25,7 +39,14 @@ function Card() {
                     <p className="subtitle is-6">@johnsmith</p>
                 </div>
     
-
+                </div>
+                <div className="buttons">
+                    <div className="showCommentModal">
+                        <a className="button is-success" id="showQuestionModal">
+                            <strong>Add Comment</strong>
+                        </a>
+                    </div>
+                </div>
                 <div className="content">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Phasellus nec iaculis mauris. <a>@bulmaio</a>.
