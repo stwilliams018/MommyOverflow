@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html />
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="shortcut icon" href="" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -11,8 +11,8 @@
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    <link rel="manifest" crossorigin="use-credentials" href="%PUBLIC_URL%/manifest.json" />
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,9 +24,10 @@
     -->
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <title>React App</title>
   </head>
@@ -44,35 +45,4 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-  <script type="text/javascript">
-
-    $("#showQuestionModal").click(function() {
-        $(".modal").addClass("is-active");  
-      });
-      
-      $("#questionmodal-close").click(function() {
-         $(".modal").removeClass("is-active");
-         $("textarea").empty()
-      });
-      $("#submitQuestion").click(function() {
-          //Add DB Save function here
-         $(".modal").removeClass("is-active");
-         $(".questionText").empty()
-      });
-
-      $("#showCommentModal").click(function() {
-        $(".modal").addClass("is-active");  
-      });
-      
-      $("#commentmodal-close").click(function() {
-         $(".modal").removeClass("is-active");
-         $("textarea").empty()
-      });
-      $("#submitComment").click(function() {
-          //Add DB Save function here
-         $(".modal").removeClass("is-active");
-         $(".questionText").empty()
-      });
-    
-    </script>
 </html>

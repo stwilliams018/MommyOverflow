@@ -1,28 +1,29 @@
-const { buildSchema } = require('graphql');
+const {buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-    type Card {
+    type Answer {
         _id: ID!
-        answerScore: Int!
-        event: Event!
+        question: Question!
         user: User!
+        score: Int!
+        answer: String!
         createdAt: String!
         updatedAt: String!
     }
-    type Event {
+    type Question {
         _id:ID!
         title: String!
+        description: String!
+        category: String!
         date: String!
         creator: User!        
     }
 
     type User {
         _id:ID!
-        firstName:String!
-        lastName:String!
         email:String!
         password: String
-        createdEvents: [Event!]
+        createdQuestions: [Question!]
     }
 
     type AuthData {
@@ -31,10 +32,10 @@ module.exports = buildSchema(`
         tokenExpiration:Int!
     }
 
-    input EventInput {
+    input QuestionInput {
         title: String!
         description: String!
-        price: Float!
+        category: String!
         date: String!
     }
 
@@ -43,16 +44,21 @@ module.exports = buildSchema(`
         password: String!
     }
 
+    input UpdateUserInput {
+        email:String!
+    }
+
     type RootQuery {
-        events:[Event!]!
-        cards:[Card!]!
+        questions:[Question!]!
+        answers:[Answer!]!
         login(email:String!,password:String!):AuthData!
     }
-    type  RootMutation {
-        createEvent(eventInput:EventInput):Event
+    type RootMutation {
+        createQuestion(questionInput:QuestionInput):Question
         createUser(userInput:UserInput): User
-        createCard(eventId: ID!): Card!
-        cancelCard(cardId:ID!):Event!
+        updateUser(email:String!): User
+        createAnswer(questionId: ID!): Answer!
+        cancelAnswer(answerId:ID!):Question!
     }
         schema {
              query: RootQuery
