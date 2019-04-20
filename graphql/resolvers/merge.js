@@ -1,22 +1,22 @@
-const Event = require('../../models/event');
+const Question = require('../../models/question');
 const User = require('../../models/user');
 const { dateToString } = require('../../helpers/date');
 
-const events = async eventIds => {
+const questions = async questionIds => {
   try {
-    const events = await Event.find({ _id: { $in: eventIds } });
-    return events.map(event => {
-      return transformEvent(event);
+    const questions = await Question.find({ _id: { $in: questionIds } });
+    return questions.map(question => {
+      return transformQuestion(question);
     });
   } catch (err) {
     throw err;
   }
 };
 
-const singleEvent = async eventId => {
+const singleQuestion = async questionId => {
   try {
-    const event = await Event.findById(eventId);
-    return transformEvent(event);
+    const question = await Question.findById(questionId);
+    return transformQuestion(question);
   } catch (err) {
     throw err;
   }
@@ -28,36 +28,36 @@ const user = async userId => {
     return {
       ...user._doc,
       _id: user.id,
-      createdEvents: events.bind(this, user._doc.createdEvents)
+      createdQuestions: questions.bind(this, user._doc.createdQuestions)
     };
   } catch (err) {
     throw err;
   }
 };
 
-const transformEvent = event => {
+const transformQuestion = question => {
   return {
-    ...event._doc,
-    _id: event.id,
-    date: dateToString(event._doc.date),
-    creator: user.bind(this, event.creator)
+    ...question._doc,
+    _id: question.id,
+    date: dateToString(question._doc.date),
+    creator: user.bind(this, question.creator)
   };
 };
 
-const transformCard = card => {
+const transformAnswer = answer => {
   return {
-    ...card._doc,
-    _id: card.id,
-    user: user.bind(this, card._doc.user),
-    event: singleEvent.bind(this, card._doc.event),
-    createdAt: dateToString(card._doc.createdAt),
-    updatedAt: dateToString(card._doc.updatedAt)
+    ...answer._doc,
+    _id: answer.id,
+    user: user.bind(this, answer._doc.user),
+    question: singleQuestion.bind(this, answer._doc.question),
+    createdAt: dateToString(answer._doc.createdAt),
+    updatedAt: dateToString(answer._doc.updatedAt)
   };
 };
 
-exports.transformEvent = transformEvent;
-exports.transformCard = transformCard;
+exports.transformQuestion = transformQuestion;
+exports.transformAnswer = transformAnswer;
 
 // exports.user = user;
-// exports.events = events;
-// exports.singleEvent = singleEvent;
+// exports.questions = questions;
+// exports.singleQuestion = singleQuestion;

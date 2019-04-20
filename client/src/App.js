@@ -1,26 +1,63 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import AuthPage from './pages/Auth';
-import HomePage from './pages/Home';
+import AnswersPage from './pages/Answers';
+import QuestionsPage from './pages/Questions';
 import ProfilePage from './pages/Profile';
 import MainNavigation from './components/Navigation/MainNavigation';
+import AuthContext from './context/auth-context';
+
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    token: null,
+    userId: null
+  };
+
+  login = (token, userId, tokenExpiration) => {
+    this.setState({ token: token, userId: userId });
+  };
+
+  logout = () => {
+    this.setState({ token: null, userId: null });
+  };
+
   render() {
     return (
       <BrowserRouter>
-      <React.Fragment>
-      <MainNavigation />
-      <main>
-      <Switch>
-      <Redirect from="/" to="/auth" exact />
-      <Route path="/auth" component={AuthPage} />
-      <Route path="/Home" component={HomePage} />
-      <Route path="/Profile" component={ProfilePage} />
-      </Switch>
-      </main>     
-      </React.Fragment> 
+        <React.Fragment>
+          <AuthContext.Provider
+            value={{
+              token: this.state.token,
+              userId: this.state.userId,
+              login: this.login,
+              logout: this.logout
+            }}
+          >
+            <MainNavigation />
+            <main className="main-content">
+              <Switch>
+                {this.state.token && <Redirect from="/" to="/questions" exact />}
+                {this.state.token && (
+                  <Redirect from="/auth" to="/questions" exact />
+                )}
+                {!this.state.token && (
+                  <Route path="/auth" component={AuthPage} />
+                )}
+                <Route path="/questions" component={QuestionsPage} />
+                {this.state.token && (
+                  <Route path="/answers" component={AnswersPage} />
+                )}
+                {this.state.token && (
+                  <Route path="/profile" component={ProfilePage} />
+                )}
+                {!this.state.token && <Redirect to="/auth" exact />}
+              </Switch>
+            </main>
+          </AuthContext.Provider>
+        </React.Fragment>
       </BrowserRouter>
     );
   }

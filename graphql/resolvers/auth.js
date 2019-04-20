@@ -24,6 +24,14 @@ module.exports = {
       throw err;
     }
   },
+  updateUser: async ({ email }) => {
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      throw new Error(`Couldn’t find user with email ${email}`);
+    }
+    user.email = email; 
+    return user;
+   },
   login: async ({ email, password }) => {
     const user = await User.findOne({ email: email });
     if (!user) {

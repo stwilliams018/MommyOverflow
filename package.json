@@ -12,10 +12,8 @@
     "express": "^4.16.4",
     "express-graphql": "^0.8.0",
     "graphql": "^14.2.1",
-    "http-proxy-middleware": "^0.19.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.2",
-    "mongoose-unique-validator": "^2.0.3"
+    "mongoose": "^5.5.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -28,13 +26,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cgriffinhub/project3.git"
+    "url": "git+https://github.com/stwilliams018/MommyOverflow.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cgriffinhub/project3/issues"
+    "url": "https://github.com/stwilliams018/MommyOverflow/issues"
   },
-  "homepage": "https://github.com/cgriffinhub/project3#readme"
+  "homepage": "https://github.com/stwilliams018/MommyOverflow#readme"
 }

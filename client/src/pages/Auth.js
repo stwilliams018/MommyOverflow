@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './Auth.css';
-
+import AuthContext from '../context/auth-context';
 
 class AuthPage extends Component {
     state = {
         isLogin: true
       };
+
+      static contextType = AuthContext;
 
     constructor(props) {
         super(props);
@@ -58,7 +60,7 @@ class AuthPage extends Component {
         
 
 
-        fetch('http://localhost:8000/graphql', {
+        fetch('http://localhost:5000/graphql', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
@@ -72,7 +74,17 @@ class AuthPage extends Component {
                 return res.json();
             })
             .then(resData => {
-                console.log(resData);
+              console.log(resData.data.login.token);
+              
+                if (resData.data.login.token) {
+                    this.context.login(
+                        resData.data.login.token, 
+                        resData.data.login.userId,
+                        resData.data.login.tokenExpiration
+                    );
+                    localStorage.setItem('token', resData.data.login.token);
+                }
+                
             })
             .catch(err => {
                 console.log(err);
@@ -80,18 +92,30 @@ class AuthPage extends Component {
     };
     render() {
         return (
-        <form onSubmit={this.submitHandler}>
-            <div className="control"> 
-                <label>Email address:</label>
-                <input type="email" className="input" id="email" ref={this.emailEl} />
-            </div>
-            <div className="control">
-                <label>Password:</label>
-                <input type="password" className="input" id="password" ref={this.passwordEl} />
-            </div>
-            <button type="submit" className="button">Submit</button>
-            <button type="button" className="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
-        </form>);
+            <div className="container">
+    <div className="row">
+      <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div className="card card-signin my-5">
+          <div className="card-body">
+            <h5 className="card-title text-center">Sign In</h5>
+            <form onSubmit={this.submitHandler}>
+              <div className="form-label-group">
+              <input type="email" className="form-control" id="email" ref={this.emailEl} />
+                <label htmlFor="inputEmail">Email address</label>
+              </div>
+              <div className="form-label-group">
+              <input type="password" className="form-control" id="password" ref={this.passwordEl} />
+                <label htmlFor="inputPassword">Password</label>
+              </div>
+              <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{this.state.isLogin ? 'Login' : 'Sign Up'}</button>
+              <hr className="my-4" />
+            <button type="button" className="btn btn-lg btn-primary btn-block text-uppercase" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>);
     }
 }
 
