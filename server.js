@@ -1,64 +1,48 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const graphqlHttp = require('express-graphql');
 const mongoose = require('mongoose');
-const graphQlSchema = require('./graphql/schema/index');
-const graphQlResolvers = require('./graphql/resolvers/index');
-const isAuth = require('./middleware/is-auth');
-const path = require('path');
-const port = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
+const passport = require('passport');
+
+const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
 const app = express();
 
-
+//Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use((req,res,next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    if(req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
-    next();
-});
-
-app.use(isAuth);
-
-app.use('/graphql', graphqlHttp({
-    schema: graphQlSchema,
-    rootValue: graphQlResolvers,
-    graphiql: true
-})
-);
 
 
-//Static file declaration
-app.use(express.static(path.join(__dirname, 'client/build')));
+//DB Config
+const db = require('./config/keys').mongoURI;
 
-//production mode
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
-  //
-  app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname = 'client/build/index.html'));
-  })
-}
-//build mode
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/public/index.html'));
+//connection to mongodb
+/* mongoose.connect(db, { useNewUrlParser: true })
+    .then(() => console.log('MongoDB connected!'))
+    .catch(err => console.log(err)) */
+/* mongoose.connect(
+process.env.MONGODB_URI || "mongodb://localhost/developernetwork"
+); */
+
+mongoose.connect('mongodb://chuck:password1@ds143156.mlab.com:43156/heroku_8l7l35pg', { useNewUrlParser: true });
+const connection = mongoose.connection;
+connection.once('open', function () {
+    console.log("MongoDB database connection established successfully");
 })
 
+//Passport middleware
+app.use(passport.initialize());
 
+//Passport Config
+require('./config/passport')(passport);
 
-mongoose.connect("mongodb://chuck:password1@ds143156.mlab.com:43156/heroku_8l7l35pg"
-).then(() => {
-  //start server
-app.listen(port, (req, res) => {
-  console.log( `server listening on port: ${port}`);
-})
+//Use Routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
-})
-    .catch(err => {
-        console.log(err);
-    });
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
