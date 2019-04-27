@@ -4,6 +4,15 @@ import CommentModal from "../components/CommentModal";
 
 class HomePage extends Component {
 
+  state = {
+    isOpen: true
+  };
+
+  constructor(props) {
+    super(props);
+    
+  }
+
   handleEvent(){
 
     return(

@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './MainNavigation.css';
+import logo from "../images/icon.png";
+
 
 
 function mainNavigation() {
+  
   return (
 
     <div >
@@ -12,6 +15,7 @@ function mainNavigation() {
     <nav className="navbar is-link" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
+          <img src={logo} width="56" height="28"></img>
           <h1 className="title is-2">MommyOverflow</h1>
         </a>
       </div>
