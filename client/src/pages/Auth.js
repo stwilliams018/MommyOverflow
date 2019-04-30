@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
 import './Auth.css';
-import babies from '../components/images/babies.jpg';
-import honey from '../components/images/honey.jpg';
-import insect from '../components/images/insect.jpg';
-import thermometer from '../components/images/thermometer.jpg';
 
 
 class AuthPage extends Component {
     state = {
         isLogin: true
-    };
-
+      };
 
     constructor(props) {
         super(props);
         this.emailEl = React.createRef();
         this.passwordEl = React.createRef();
-    }
+      }
 
     switchModeHandler = () => {
         this.setState(prevState => {
-            return { isLogin: !prevState.isLogin };
+          return { isLogin: !prevState.isLogin };
         });
-    };
+      };
 
     submitHandler = (event) => {
         event.preventDefault();
@@ -58,9 +53,9 @@ class AuthPage extends Component {
             };
         }
 
+        
 
-
-
+        
 
 
         fetch('http://localhost:8000/graphql', {
@@ -85,26 +80,18 @@ class AuthPage extends Component {
     };
     render() {
         return (
-            <div>
-            <div>
-                <img src={babies} width="210" height="100"></img>;
-                <img src={honey} width="210" height="100"></img>;
-                <img src={insect} width="250" height="100"></img>;
-                <img src={thermometer} width="200" height="100"></img>;
+        <div className="field is-normal" onSubmit={this.submitHandler}>
+            <div className="control"> 
+                <label>Email address:</label>
+                <input type="email" className="input" id="email" ref={this.emailEl} />
             </div>
-            <div className="field is-normal" onSubmit={this.submitHandler}>
-                <div className="control">
-                    <label>Email address:</label>
-                    <input type="email" className="input" id="email" ref={this.emailEl} />
-                </div>
-                <div className="control">
-                    <label>Password:</label>
-                    <input type="password" className="input" id="password" ref={this.passwordEl} />
-                </div>
-                <button type="submit" className="button">Submit</button>
-                <button type="button" className="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
+            <div className="control">
+                <label>Password:</label>
+                <input type="password" className="input" id="password" ref={this.passwordEl} />
             </div>
-            </div>);
+            <button type="submit" className="button">Submit</button>
+            <button type="button" className="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
+        </div>);
     }
 }
 
