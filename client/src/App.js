@@ -6,6 +6,8 @@ import ProfilePage from './pages/Profile';
 import MainNavigation from './components/Navigation/MainNavigation';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Logout from './components/auth/Logout';
+
 import './App.css';
 
 class App extends Component {
@@ -16,9 +18,10 @@ class App extends Component {
           <MainNavigation />
           <main>
             <Switch>
-              <Redirect from="/" to="/auth" exact />
-              <Route exact path="/register" component={Register} />
+              <Redirect from="/" to="/login" exact />
               <Route exact path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/logout" component={Logout} />
               <Route path="/Auth" component={AuthPage} />
               <Route path="/Home" component={HomePage} />
               <Route path="/Profile" component={ProfilePage} />

@@ -86,24 +86,25 @@ class AuthPage extends Component {
     render() {
         return (
             <div>
-            <div>
-                <img src={babies} width="210" height="100"></img>;
+                <div>
+                    <img src={babies} width="210" height="100"></img>;
                 <img src={honey} width="210" height="100"></img>;
                 <img src={insect} width="250" height="100"></img>;
                 <img src={thermometer} width="200" height="100"></img>;
             </div>
-            <div className="field is-normal" onSubmit={this.submitHandler}>
-                <div className="control">
-                    <label>Email address:</label>
-                    <input type="email" className="input" id="email" ref={this.emailEl} />
+                <div className="field is-normal" onSubmit={this.submitHandler}>
+                    <div className="control">
+                        <label>Email address:</label>
+                        <input type="email" className="input" id="email" ref={this.emailEl} />
+                    </div>
+                    <div className="control">
+                        <label>Password:</label>
+                        <input type="password" className="input" id="password" ref={this.passwordEl} />
+                    </div>
+                    <button type="submit" className="button">Submit</button>
+                    <button type="button" className="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
+
                 </div>
-                <div className="control">
-                    <label>Password:</label>
-                    <input type="password" className="input" id="password" ref={this.passwordEl} />
-                </div>
-                <button type="submit" className="button">Submit</button>
-                <button type="button" className="button" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</button>
-            </div>
             </div>);
     }
 }
