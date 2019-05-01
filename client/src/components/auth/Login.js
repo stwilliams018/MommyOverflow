@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
@@ -30,11 +30,11 @@ export default class Login extends Component {
 
 
 
-        /*     axios
-                .post('/api/users/login', user)
-                .then(res => console.log(res.data))
-                .catch(err => this.setState({ errors: err.response.data }));
-            console.log(user); */
+        axios
+            .post('/api/users/login', user)
+            .then(res => console.log(res.data))
+            .catch(err => this.setState({ errors: err.response.data }));
+        console.log(user);
     }
 
 
