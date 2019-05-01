@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -32,11 +34,30 @@ class Register extends Component {
 
 
         }
-        axios
+        /* axios
             .post('/api/users/register', newUser)
             .then(res => console.log(res.data))
-            .catch(err => this.setState({ errors: err.response.data }));
+            .catch(err => this.setState({ errors: err.response.data })); */
+
+        /*  axios
+             .post('/api/users/register', newUser)
+             .then((res) => {
+                 if (res.data === true) {
+                     localStorage.setItem('token', res.data.token);
+ 
+                     axios.defaults.headers.common['x-access-token'] = res.data.token;
+ 
+ 
+                 }
+ 
+             })
+             .catch(err => this.setState({ errors: err.response.data })); */
+
+
     }
+
+
+
 
     render() {
         return (
@@ -64,12 +85,15 @@ class Register extends Component {
                                         <input type="password" className="form-control form-control-lg" placeholder="Confirm Password" name="password2" value={this.state.password2} onChange={this.onChange} />
                                     </div>
                                     <input type="submit" className="btn btn-info btn-block mt-4" />
+
+                                    <Link to="/logout">logout</Link>
+
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
