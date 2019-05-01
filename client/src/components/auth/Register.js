@@ -39,19 +39,19 @@ class Register extends Component {
             .then(res => console.log(res.data))
             .catch(err => this.setState({ errors: err.response.data })); */
 
-        axios
-            .post('/api/users/register', newUser)
-            .then((res) => {
-                if (res.data === true) {
-                    localStorage.setItem('token', res.data.token);
-
-                    axios.defaults.headers.common['x-access-token'] = res.data.token;
-
-
-                }
-
-            })
-            .catch(err => this.setState({ errors: err.response.data }));
+        /*  axios
+             .post('/api/users/register', newUser)
+             .then((res) => {
+                 if (res.data === true) {
+                     localStorage.setItem('token', res.data.token);
+ 
+                     axios.defaults.headers.common['x-access-token'] = res.data.token;
+ 
+ 
+                 }
+ 
+             })
+             .catch(err => this.setState({ errors: err.response.data })); */
 
 
     }

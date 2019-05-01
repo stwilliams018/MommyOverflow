@@ -30,11 +30,11 @@ export default class Login extends Component {
 
 
 
-        axios
+        /* axios
             .post('/api/users/login', user)
             .then(res => console.log(res.data))
             .catch(err => this.setState({ errors: err.response.data }));
-        console.log(user);
+        console.log(user); */
     }
 
 
