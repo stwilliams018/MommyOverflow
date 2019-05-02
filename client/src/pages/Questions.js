@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Header from "../components/images/header.jpg";
 
 class Questions extends Component {
   state = {
@@ -115,7 +116,7 @@ class Questions extends Component {
      <section className="hero is-info is-medium is-bold">
         <div className="hero-body">
             <div className="container has-text-centered">
-                <h1 className="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed eiusmod tempor incididunt ut labore et dolore magna aliqua</h1>
+                <h1 className="title has-text-black-bis">Welcome to Mommy Overflow! <br />Check out some Questions for New Mommys'</h1>
             </div>
         </div>
     </section>
@@ -134,7 +135,7 @@ class Questions extends Component {
                   <div className="card-content">
                       <div className="media">
                           <div className="media-center">
-                              <img src="http://www.radfaces.com/images/avatars/angela-chase.jpg" className="author-image" alt="Placeholder image" />
+                              <img src={Header} className="author-image" alt="image"/>
                           </div>
                           <div className="media-content has-text-centered">
                               <p className="title article-title">
