@@ -5,6 +5,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { TextArea, FormBtn } from "../components/Form";
+import Header from "../components/images/header.jpg";
 
 class Question extends Component {
   state = {
@@ -79,7 +80,7 @@ class Question extends Component {
                   <div className="card-content">
                       <div className="media">
                           <div className="media-center">
-                              <img src="http://www.radfaces.com/images/avatars/angela-chase.jpg" className="author-image" alt="Placeholder image" />
+                              <img src={Header} className="author-image" alt="Placeholder image" />
                           </div>
                           <div className="media-content">
                               <p>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './MainNavigation.css';
-
+import Icon from "../images/url-baby.png";
 
 function mainNavigation() {
   return (
@@ -13,7 +13,7 @@ function mainNavigation() {
         <div className="container">
             <div className="navbar-brand">
                 <a className="navbar-item" href="../">
-                        <img src="../images/bulma.png" alt="Logo" />
+                        <img src={Icon} alt="Logo" height="200" width="75" />
                     </a>
                 <span className="navbar-burger burger" data-target="navbarMenu">
                         <span></span>

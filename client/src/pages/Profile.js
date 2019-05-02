@@ -69,7 +69,7 @@ class ProfilePage extends Component {
                 <Jumbotron>
                   <h1>What Questions Should I Read?</h1>
                 </Jumbotron>
-                <form>
+                <form className="">
                   <Input
                     value={this.state.title}
                     onChange={this.handleInputChange}
