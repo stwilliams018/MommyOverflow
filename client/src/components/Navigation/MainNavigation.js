@@ -24,31 +24,10 @@ function mainNavigation() {
             
 
             <div id="navbarMenu" className="navbar-menu">
-                <div className="navbar-end">
-                <NavLink className="navbar-item" to="/Home">Home</NavLink>                
-                <NavLink className="navbar-item" to="/Questions">Questions</NavLink>                
+                <div className="navbar-end">                
+                <NavLink className="navbar-item" to="/Questions">Home</NavLink>                
                 <NavLink className="navbar-item" to="/Profile">Profile</NavLink>
-                <NavLink className="navbar-item" to="/Auth">Login</NavLink>
-                    <div className="navbar-item has-dropdown is-hoverable">
-                        <a className="navbar-link">
-                                Account
-                            </a>
-                        <div className="navbar-dropdown">
-                            <a className="navbar-item">
-                                    Dashboard
-                                </a>
-                            <a className="navbar-item">
-                                    Profile
-                                </a>
-                            <a className="navbar-item">
-                                    Settings
-                                </a>
-                            <hr className="navbar-divider" />
-                            <div className="navbar-item">
-                                Logout
-                            </div>
-                        </div>
-                    </div>
+                <NavLink className="navbar-item" to="/login">Login</NavLink>
                 </div>
             </div>
         </div>
