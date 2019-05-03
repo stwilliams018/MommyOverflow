@@ -67,7 +67,7 @@ class ProfilePage extends Component {
             <Row>
               <Col size="md-6">
                 <Jumbotron>
-                  <h1>What Questions Should I Read?</h1>
+                  <h1>Do You Have A New Question?</h1>
                 </Jumbotron>
                 <form className="">
                   <Input
