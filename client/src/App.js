@@ -23,7 +23,7 @@ class App extends Component {
           <MainNavigation />
           <main>
             <Switch>
-              <Redirect from="/" to="/login" exact />
+              <Redirect from="/" to="/Home" exact />
               <Route exact path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/logout" component={Logout} />
