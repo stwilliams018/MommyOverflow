@@ -4,15 +4,15 @@ import React from "react";
 
 export function Input(props) {
   return (
-    <div className="field">
-      <input className="input" {...props} />
+    <div className="field is-two-thirds">
+      <input className="input is-success" {...props} />
     </div>
   );
 }
 
 export function TextArea(props) {
   return (
-    <div className="field">
+    <div className="field is-two-thirds">
       <textarea className="textarea" rows="20" {...props} />
     </div>
   );
