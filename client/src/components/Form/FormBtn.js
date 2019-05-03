@@ -2,8 +2,10 @@ import React from "react";
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success is-primary">
-      {props.children}
-    </button>
+    <div className="field is-grouped">
+      <button {...props} style={{ float: "right", marginBottom: 10 }} className="button is-link">
+        {props.children}
+      </button>
+    </div>
   );
 }
