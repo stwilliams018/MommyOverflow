@@ -65,11 +65,12 @@ class ProfilePage extends Component {
         return (
           <Container fluid>
             <Row>
-              <Col size="md-6">
                 <Jumbotron>
                   <h1>Do You Have A New Question?</h1>
                 </Jumbotron>
-                <form className="">
+                <form className="container">
+                <div className="columns is-centered">
+                <div className="column is-half">
                   <Input
                     value={this.state.title}
                     onChange={this.handleInputChange}
@@ -94,8 +95,9 @@ class ProfilePage extends Component {
                   >
                     Submit Question
                   </FormBtn>
+                </div>
+                </div>
                 </form>
-              </Col>
               <Col size="md-6 sm-12">
                 <Jumbotron>
                   <h1>Questions On My List</h1>
