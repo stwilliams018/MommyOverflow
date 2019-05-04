@@ -1,44 +1,41 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
-
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //name: '',
-            email: '',
-            password: '',
-            errors: {}
-        };
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
+class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+  }
+componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/profile"); // push user to dashboard when they login
     }
-
-    onChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const { email, password } = this.state
-
-
-
-        /* axios
-            .post('/api/users/login', user)
-            .then(res => console.log(res.data))
-            .catch(err => this.setState({ errors: err.response.data }));
-        console.log(user); */
-    }
-
-
-    render() {
+  }
+onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+onSubmit = e => {
+    e.preventDefault();
+const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+  };
+render() {
+    const { errors } = this.state;
         return (
 
             <div>
@@ -49,17 +46,43 @@ export default class Login extends Component {
                             <p className="lead text-center">Sign in to your account</p>
                             <form onSubmit={this.onSubmit}>
                                 <div className="field">
-                                    <input type="email" className="input" placeholder="Email Address" name="email" value={this.state.email} onChange={this.onChange} />
+                                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  className={classnames("input", {
+                    invalid: errors.email || errors.emailnotfound
+                  })}
+                />
                                 </div>
                                 <div className="field">
-                                    <input type="password" className="input" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
+                                <input
+                  onChange={this.onChange}
+                  value={this.state.password}
+                  error={errors.password}
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  className={classnames("input", {
+                    invalid: errors.password || errors.passwordincorrect
+                  })}
+                />
                                 </div>
                                 <div className="field is-grouped">
                                     <div className="control">
-                                    <input type="submit" className="button is-success" />
+                                    <button
+                  
+                  type="submit"
+                  className="button is-success"
+                >
+                  Login
+                </button>
                                     </div>
                                     <div className="control">
-                                    <Link to="/logout" className="button is-danger">Logout</Link>
+                                    <Link to="/register" className="button is-danger">Sign Up</Link>
                                     </div>
                                 </div>
                             </form>
@@ -71,3 +94,16 @@ export default class Login extends Component {
         )
     }
 }
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

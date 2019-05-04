@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Question = require('./question.js');
-const User = require('./user.js');
+const User = require('./User.js');
 const Schema = mongoose.Schema;
 
 const answerSchema = new Schema({

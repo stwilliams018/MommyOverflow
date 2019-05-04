@@ -9,6 +9,9 @@ export default {
   getQuestion: function(id) {
     return axios.get("/api/questions/" + id);
   },
+  getUserQuestions: function(id) {
+    return axios.get("/api/questions/user/" + id);
+  },
   // Deletes the question with the given id
   deleteQuestion: function(id) {
     return axios.delete("/api/questions/" + id);
@@ -23,4 +26,10 @@ export default {
   saveAnswer: function(answerData) {
     return axios.post("/api/answers", answerData);
   },
+  saveUser: function(userData) {
+    return axios.post("/api/users", userData);
+  },
+  loginUser: function(userData) {
+    return axios.post("/api/users/login", userData);
+  }
 };
