@@ -1,101 +1,137 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
-
-
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
 class Register extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            name: '',
-            email: '',
-            password: '',
-            password2: '',
-            errors: {}
-        };
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+      errors: {}
+    };
+  }
+componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
-
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-
-    }
-    onSubmit(e) {
-        e.preventDefault();
-        const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            password2: this.state.password2,
-
-
-        }
-        /* axios
-            .post('/api/users/register', newUser)
-            .then(res => console.log(res.data))
-            .catch(err => this.setState({ errors: err.response.data })); */
-
-        /*  axios
-             .post('/api/users/register', newUser)
-             .then((res) => {
-                 if (res.data === true) {
-                     localStorage.setItem('token', res.data.token);
- 
-                     axios.defaults.headers.common['x-access-token'] = res.data.token;
- 
- 
-                 }
- 
-             })
-             .catch(err => this.setState({ errors: err.response.data })); */
-
-
-    }
-
-
-
-
-    render() {
+  }
+onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+onSubmit = e => {
+    e.preventDefault();
+const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+this.props.registerUser(newUser, this.props.history); 
+  };
+render() {
+    const { errors } = this.state;
         return (
             <div>
                 <div className="register">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-8 m-auto">
-                                <h1 className="display-4 text-center">Sign Up</h1>
-
-                                <form onSubmit={this.onSubmit}>
-                                    <div className="form-group">
-                                        <input type="text" className="form-control form-control-lg" placeholder="Name" name="name" value={this.state.name}
-                                            onChange={this.onChange} />
+                <div className="container">
+                    <div className="columns is-centered">
+                        <div className="column is-half">
+                            <h1 className="display-4 text-center">Log In</h1>
+                            <p className="lead text-center">Sign in to your account</p>
+                            <form onSubmit={this.onSubmit}>
+                                <div className="field">
+                                <input
+                  onChange={this.onChange}
+                  value={this.state.name}
+                  error={errors.name}
+                  id="name"
+                  type="name"
+                  placeholder="Name"
+                  className={classnames("input", {
+                    invalid: errors.name || errors.namenotfound
+                  })}
+                />
+                                </div>
+                                <div className="field">
+                                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  className={classnames("input", {
+                    invalid: errors.email || errors.emailnotfound
+                  })}
+                />
+                                </div>
+                                <div className="field">
+                                <input
+                  onChange={this.onChange}
+                  value={this.state.password}
+                  error={errors.password}
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  className={classnames("input", {
+                    invalid: errors.password || errors.passwordincorrect
+                  })}
+                />
+                                </div>
+                                <div className="field">
+                                <input
+                  onChange={this.onChange}
+                  value={this.state.password2}
+                  error={errors.password2}
+                  id="password2"
+                  type="password"
+                  placeholder="Confirm Password"
+                  className={classnames("input")}
+                />
+                                </div>
+                                <div className="field is-grouped">
+                                    <div className="control">
+                                    <button
+                  
+                  type="submit"
+                  className="button is-success"
+                >
+                  Sign Up
+                </button>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="email" className="form-control form-control-lg" placeholder="Email Address" name="email" value={this.state.email}
-                                            onChange={this.onChange} />
-                                        <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
+                                    <div className="control">
+                                    Already a member? <Link to="/register" className="">Sign In</Link>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="password" className="form-control form-control-lg" placeholder="Confirm Password" name="password2" value={this.state.password2} onChange={this.onChange} />
-                                    </div>
-                                    <input type="submit" className="btn btn-info btn-block mt-4" />
-
-                                    <Link to="/logout">logout</Link>
-
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                </div>
+
+                    
                 </div>
             </div >
         )
     }
 }
 
-export default Register;
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  export default connect(
+    mapStateToProps,
+    { registerUser }
+  )(withRouter(Register));

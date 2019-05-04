@@ -103,3 +103,7 @@ div.column.is-8:first-child {
 .navbar-item img {
   max-height: none;
 }
+
+.media-content-top {
+  margin-top:0px;
+}

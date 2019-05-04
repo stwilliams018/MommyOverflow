@@ -10,10 +10,13 @@
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "gravatar": "^1.8.0",
+    "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.3",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
     "validator": "^10.11.0"
   },
   "devDependencies": {},
