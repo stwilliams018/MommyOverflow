@@ -6,6 +6,10 @@ router.route("/")
   .get(questionsController.findAll)
   .post(questionsController.create);
 
+  router.route("/user/:id")
+  .get(questionsController.findAllUser);
+
+
 // Matches with "/api/questions/:id"
 router
   .route("/:id")
