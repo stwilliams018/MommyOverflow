@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ekhan3119/mommystackoverflopw2.git"
+    "url": "git+https://github.com/stwilliams018/MommyOverflow.git"
   },
   "author": "Eva",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ekhan3119/mommystackoverflopw2/issues"
+    "url": "https://github.com/stwilliams018/MommyOverflow/issues"
   },
-  "homepage": "https://github.com/ekhan3119/mommystackoverflopw2#readme"
+  "homepage": "https://github.com/stwilliams018/MommyOverflow#readme"
 }
