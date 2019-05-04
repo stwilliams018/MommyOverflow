@@ -119,7 +119,7 @@ class Question extends Component {
                 disabled={!(this.state.answer)}
                 onClick={this.handleAnswerSubmit}
               >
-                Submit Question
+                Submit Comment
               </FormBtn>
               </div>
               </div>

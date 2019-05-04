@@ -43,8 +43,8 @@ render() {
                 <div className="container">
                     <div className="columns is-centered">
                         <div className="column is-half">
-                            <h1 className="display-4 text-center">Log In</h1>
-                            <p className="lead text-center">Sign in to your account</p>
+                            <h1 className="display-4 text-center">Register</h1>
+                            <p className="lead text-center">Create your account</p>
                             <form onSubmit={this.onSubmit}>
                                 <div className="field">
                                 <input
