@@ -98,15 +98,17 @@ class ProfilePage extends Component {
                 </div>
                 </div>
                 </form>
-              <Col size="md-6 sm-12">
+              <Col size="">
                 <Jumbotron>
                   <h1>Questions On My List</h1>
                 </Jumbotron>
                 {this.state.questions.length ? (
+
+                  <div className="table is-centered">
                   <List>
                     {this.state.questions.map(question => (
-                      <ListItem key={question._id}>
-                        <Link to={"/questions/" + question._id}>
+                      <ListItem className="tbody" key={question._id}>
+                        <Link  to={"/questions/" + question._id}>
                           <strong>
                             {question.title} by {question.user}
                           </strong>
@@ -115,6 +117,8 @@ class ProfilePage extends Component {
                       </ListItem>
                     ))}
                   </List>
+                  </div>
+
                 ) : (
                   <h3>No Results to Display</h3>
                 )}
